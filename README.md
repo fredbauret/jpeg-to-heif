@@ -23,12 +23,16 @@ TODO:
 If you want to test it by yourself, I have added a Dockerfile to build gpac and all the required tools
 ```bash
 # this will build the gpac docker image
-$ docker-compose build
-# this will start the nginx web-server
-$ docker-compose up
+$ docker-compose build OR make build
+# this will start the nginx web-server (localhost:8080)
+$ docker-compose up OR make up
 ```
 
-To convert images:
+To convert images in directory dir:
+```bash
+make convert dir
+```
+OR
 ```bash
 $ for F in *.jpg *.jpeg; \
   do ffmpeg -i ./$F -crf 23 -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" -preset slower -pix_fmt yuv420p -f hevc $F.hvc && \
