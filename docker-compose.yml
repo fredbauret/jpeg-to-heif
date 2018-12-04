@@ -10,4 +10,4 @@ services:
   gpac:
     build: .
     volumes:
-      - .:/usr/share/nginx/html
+      - .:/gpac
