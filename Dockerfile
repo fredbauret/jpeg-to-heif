@@ -1,9 +1,10 @@
-FROM ubuntu:16.04
-
-ADD ./lib /tmp/gpac
+FROM ubuntu:18.04
 
 RUN apt-get update && \
-  apt-get install -y \
+  apt-get -y upgrade && \
+  apt-get -y dist-upgrade
+
+RUN apt-get install -y \
     cmake \
     make \
     g++ \
@@ -24,20 +25,22 @@ RUN apt-get update && \
     libisl15 \
     libjpeg-turbo8-dev \
     libmpc3 \
-    libmpfr4 \
+    libmpfr-dev \
     libpcre3 \
-    libpng16-dev \
-    libreadline6 \
+    libpng-dev \
+    libreadline-dev \
     libselinux1 \
     libsigsegv2 \
     libtinfo5 \
     linux-libc-dev \
     locales \
     python-pkg-resources \
-    libonig2 \
+    libonig-dev \
     zlib1g \
     zlib1g-dev
-  
+
+ADD ./lib /tmp/gpac
+
 RUN cd /tmp/gpac && \
   tar -xzvf v0.7.1.tar.gz && \
   unzip gpac_extra_libs.zip && \
@@ -66,4 +69,3 @@ RUN cd /tmp/gpac && \
   make install lib && \
   make install && \
   cp bin/gcc/libgpac.so /usr/lib
-
